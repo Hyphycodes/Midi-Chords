@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 
-// âââ Constants ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Constants Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
 const NOTE_NAMES = ["C","C#","D","Eb","E","F","F#","G","Ab","A","Bb","B"];
 
@@ -10,7 +10,7 @@ const CHORD_TYPES = {
   dom7: { intervals:[0,4,7,10],      label:"7",     color:"#fbbf24", cat:"dominant" },
   maj7: { intervals:[0,4,7,11],      label:"maj7",  color:"#34d399", cat:"major" },
   min7: { intervals:[0,3,7,10],      label:"m7",    color:"#c084fc", cat:"minor" },
-  dim7: { intervals:[0,3,6,9],       label:"Â°7",    color:"#f87171", cat:"diminished" },
+  dim7: { intervals:[0,3,6,9],       label:"ÃÂ°7",    color:"#f87171", cat:"diminished" },
   dom9: { intervals:[0,4,7,10,14],   label:"9",     color:"#fb923c", cat:"dominant" },
   min9: { intervals:[0,3,7,10,14],   label:"m9",    color:"#e879f9", cat:"minor" },
   maj9: { intervals:[0,4,7,11,14],   label:"maj9",  color:"#6ee7b7", cat:"major" },
@@ -21,9 +21,9 @@ const CHORD_TYPES = {
 const MAJOR_SCALE = [0,2,4,5,7,9,11];
 const DIATONIC_TYPES = ["maj","min","min","maj","dom7","min","dim7"];
 const DIATONIC_FANCY = ["maj9","min9","min7","maj9","dom9","min9","dim7"];
-const DEGREES = ["I","ii","iii","IV","V","vi","viiÂ°"];
+const DEGREES = ["I","ii","iii","IV","V","vi","viiÃÂ°"];
 
-// âââ Music Theory âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Music Theory Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
 function buildDiatonic(rootIdx) {
   return MAJOR_SCALE.map((interval, i) => {
@@ -69,7 +69,7 @@ function bestInversion(prev, rootMidi, type) {
   return best;
 }
 
-// Graph positions â radial layout
+// Graph positions Ã¢ÂÂ radial layout
 function layoutNodes(nodes, cx, cy) {
   const diatonic = nodes.filter(n=>!n.isSecondary);
   const secondary = nodes.filter(n=>n.isSecondary);
@@ -96,7 +96,7 @@ const EDGES = [
   ["s0","d1"],["s1","d2"],["s2","d3"],["s3","d4"],["s4","d5"],
 ];
 
-// âââ Audio ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Audio Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
 let _Tone = null;
 let _synth = null;
@@ -128,7 +128,7 @@ async function playNotes(midiNotes, dur="1.5n") {
   } catch(e) { console.warn(e); }
 }
 
-// âââ Shop Chord Browser Data ââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Shop Chord Browser Data Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
 function buildShopChords() {
   const chords = [];
@@ -153,7 +153,7 @@ function buildShopChords() {
 
 const ALL_SHOP_CHORDS = buildShopChords();
 
-// âââ Main App âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Main App Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
 const TABS = ["graph","shop","builder"];
 const TAB_LABELS = { graph:"Navigator", shop:"Chord Shop", builder:"Phrase Builder" };
@@ -320,7 +320,7 @@ export default function App() {
             padding:"5px 12px", borderRadius:"6px", fontSize:"10px",
             letterSpacing:"2px", cursor:"pointer", transition:"all 0.2s",
           }}>
-            {fancyMode ? "â¦ EXT" : "EXT"}
+            {fancyMode ? "Ã¢ÂÂ¦ EXT" : "EXT"}
           </button>
 
           <div style={{
@@ -353,6 +353,7 @@ export default function App() {
             addToPhrase={addToPhrase}
             favorites={favorites} toggleFav={toggleFav}
             isFav={isFav}
+            midiStatus={midiStatus}
           />
         )}
         {tab==="shop" && (
@@ -388,9 +389,9 @@ export default function App() {
   );
 }
 
-// âââ Graph Tab ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Graph Tab Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
-function GraphTab({ nodes, nodeMap, edges, activeId, fancyMode, triggerNode, animKey, keyName, progression, setProgression, addToPhrase, favorites, toggleFav, isFav }) {
+function GraphTab({ nodes, nodeMap, edges, activeId, fancyMode, triggerNode, animKey, keyName, progression, setProgression, addToPhrase, favorites, toggleFav, isFav, midiStatus }) {
   const [hoverId, setHoverId] = useState(null);
 
   return (
@@ -615,14 +616,14 @@ function GraphTab({ nodes, nodeMap, edges, activeId, fancyMode, triggerNode, ani
             padding:"8px", borderRadius:"6px", fontSize:"10px",
             letterSpacing:"2px", cursor:"pointer", width:"100%",
           }}>
-            â PHRASE BUILDER
+            Ã¢ÂÂ PHRASE BUILDER
           </button>
         )}
 
         {/* Hint */}
         <div style={{ marginTop:"16px", fontSize:"9px", color:"#1a2a3a", letterSpacing:"1px", lineHeight:"1.7" }}>
           {midiStatus==="connected"
-            ? "Controller active â play single notes"
+            ? "Controller active Ã¢ÂÂ play single notes"
             : "Click nodes to play chords"}
         </div>
       </div>
@@ -630,7 +631,7 @@ function GraphTab({ nodes, nodeMap, edges, activeId, fancyMode, triggerNode, ani
   );
 }
 
-// âââ Shop Tab âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Shop Tab Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
 function ShopTab({ chords, favorites, toggleFav, isFav, shopFilter, setShopFilter, addToPhrase }) {
   const [playingId, setPlayingId] = useState(null);
@@ -669,7 +670,7 @@ function ShopTab({ chords, favorites, toggleFav, isFav, shopFilter, setShopFilte
             padding:"4px 12px", borderRadius:"4px", fontSize:"10px",
             letterSpacing:"1px", cursor:"pointer", transition:"all 0.2s",
           }}>
-            â¥ saved ({favorites.length})
+            Ã¢ÂÂ¥ saved ({favorites.length})
           </button>
         )}
       </div>
@@ -717,7 +718,7 @@ function ShopTab({ chords, favorites, toggleFav, isFav, shopFilter, setShopFilte
                   fontSize:"9px", padding:"3px 0", borderRadius:"3px",
                   cursor:"pointer", letterSpacing:"1px",
                 }}>
-                  {isPlaying?"â¶ï¸":"play"}
+                  {isPlaying?"Ã¢ÂÂ¶Ã¯Â¸Â":"play"}
                 </button>
                 <button onClick={()=>toggleFav(chord)} style={{
                   background: faved ? `${chord.color}22` : "transparent",
@@ -726,7 +727,7 @@ function ShopTab({ chords, favorites, toggleFav, isFav, shopFilter, setShopFilte
                   fontSize:"11px", padding:"3px 6px", borderRadius:"3px",
                   cursor:"pointer",
                 }}>
-                  {faved?"â¥":"â¡"}
+                  {faved?"Ã¢ÂÂ¥":"Ã¢ÂÂ¡"}
                 </button>
                 <button onClick={()=>addToPhrase(chord)} style={{
                   background:"transparent",
@@ -745,7 +746,7 @@ function ShopTab({ chords, favorites, toggleFav, isFav, shopFilter, setShopFilte
   );
 }
 
-// âââ Builder Tab ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Builder Tab Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
 function BuilderTab({ phrase, setPhrase, phraseLen, setPhraseLen, playPhrase, playingSlot, favorites }) {
   const [dragIdx, setDragIdx] = useState(null);
@@ -794,7 +795,7 @@ function BuilderTab({ phrase, setPhrase, phraseLen, setPhraseLen, playPhrase, pl
             letterSpacing:"2px", cursor:filled>0?"pointer":"default",
             transition:"all 0.2s",
           }}>
-            â¶ PLAY PHRASE
+            Ã¢ÂÂ¶ PLAY PHRASE
           </button>
           <button onClick={()=>setPhrase(Array(phraseLen).fill(null))} style={{
             background:"transparent", border:"1px solid #1e3a5f",
@@ -886,7 +887,7 @@ function BuilderTab({ phrase, setPhrase, phraseLen, setPhraseLen, playPhrase, pl
                     background:"none", border:"none", color:"#334155",
                     fontSize:"10px", cursor:"pointer", padding:"2px 4px",
                     lineHeight:1,
-                  }}>Ã</button>
+                  }}>ÃÂ</button>
                 </>
               ) : (
                 <div style={{ fontSize:"9px", color:"#1e3a5f", letterSpacing:"1px" }}>empty</div>
@@ -900,7 +901,7 @@ function BuilderTab({ phrase, setPhrase, phraseLen, setPhraseLen, playPhrase, pl
       {favorites.length>0 && (
         <div>
           <div style={{ fontSize:"9px", letterSpacing:"3px", color:"#334155", marginBottom:"12px" }}>
-            YOUR SAVED CHORDS â click to add to phrase
+            YOUR SAVED CHORDS Ã¢ÂÂ click to add to phrase
           </div>
           <div style={{ display:"flex", gap:"8px", flexWrap:"wrap" }}>
             {favorites.map(chord=>(
