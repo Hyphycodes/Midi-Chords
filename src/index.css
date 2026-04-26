@@ -1,41 +1,6 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body, #root {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  background: #070b10;
-  color: #e2e8f0;
-  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-  -webkit-font-smoothing: antialiased;
-  overflow: hidden;
-}
-
-button {
-  cursor: pointer;
-  font-family: inherit;
-}
-
-select {
-  font-family: inherit;
-}
-
-::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1e3a5f;
-  border-radius: 2px;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; width: 100%; }
+#root { height: 100%; }
+body { background: #070b10; color: #e2e8f0; }
+button { cursor: pointer; font-family: inherit; }
+select { font-family: inherit; }
